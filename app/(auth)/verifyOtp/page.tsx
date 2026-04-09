@@ -11,13 +11,16 @@ import { sentOtpThunk, setMobile, verifyOtpThunk } from '@/features/auth/authSli
 
 function page() {
   const [otp, setOtp] = useState("");
+  console.log(otp, "verification")
 
   const dispatch = useAppDispatch();
-  const { loading, mobile, success, isAuthenticated } = useAppSelector((state) => state.auth);
   const router = useRouter();
+  const { loading, mobile, success, isAuthenticated } = useAppSelector((state) => state.auth);
+
   // Load mobile from localStorage if not available
   useEffect(() => {
     if (mobile) return;
+
     const storedMobile = localStorage.getItem("mobile");
     if (storedMobile) {
       dispatch(setMobile(storedMobile));
@@ -34,7 +37,7 @@ function page() {
       localStorage.removeItem("mobile");
       router.push("/instruction");
     } else if (success) {
-      router.push("/create-profile");
+      router.push("/createProfile");
     }
   }, [loading, success, isAuthenticated, router]);
 

@@ -20,7 +20,7 @@ function page() {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (!phone) {
-            toast.error("Please enter your phone number.");
+            toast.error("Please enter your mobile number.");
             return;
         }
         dispatch(sentOtpThunk({ mobile: phone.replace(/\s/g, "") }))
@@ -28,9 +28,9 @@ function page() {
             .then((res) => {
                 if (res.success) {
                     dispatch(setMobile(phone));
+                    localStorage.setItem("mobile", phone);
                     toast.success(res.message);
-                    router.push("/verify-otp")
-
+                    router.push("/verifyOtp")
                 } else {
                     toast.error(res.message)
                 }
