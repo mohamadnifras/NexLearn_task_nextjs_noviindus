@@ -12,7 +12,6 @@ interface PhoneInputProps {
 }
 
 function PhoneInput({id, label, value, onChange, placeholder, required}: PhoneInputProps) {
-    console.log(required,"required")
     return (
         <div className='relative w-full'>
             {/* Floating Label */}

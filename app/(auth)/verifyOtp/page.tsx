@@ -15,7 +15,7 @@ function page() {
 
   const dispatch = useAppDispatch();
   const router = useRouter();
-  const { loading, mobile, success, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { loading, mobile, verifyOtpSuccess, isAuthenticated } = useAppSelector((state) => state.auth);
 
   // Load mobile from localStorage if not available
   useEffect(() => {
@@ -36,10 +36,10 @@ function page() {
     if (isAuthenticated) {
       localStorage.removeItem("mobile");
       router.push("/instruction");
-    } else if (success) {
+    } else if (verifyOtpSuccess) {
       router.push("/createProfile");
     }
-  }, [loading, success, isAuthenticated, router]);
+  }, [loading, verifyOtpSuccess, isAuthenticated, router]);
 
   const handleResend = () => {
     if (!mobile) {

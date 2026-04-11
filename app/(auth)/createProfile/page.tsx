@@ -17,13 +17,13 @@ function page() {
     const [profileImage, setProfileImage] = useState<File | null>(null);
     const dispatch = useAppDispatch();
     const router = useRouter();
-    const { loading, mobile, success } = useAppSelector((state) => state.auth);
+    const { loading, mobile, verifyOtpSuccess } = useAppSelector((state) => state.auth);
 
     useEffect(() => {
-        if (!success) {
+        if (!verifyOtpSuccess) {
             router.push("/login");
         }
-    }, [router, success]);
+    }, [router, verifyOtpSuccess]);
 
      const handleImageUpload = (e: ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
